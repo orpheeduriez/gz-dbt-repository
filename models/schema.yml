@@ -24,6 +24,18 @@ sources:
           - name: orders_id
             tests:
               - unique
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: greenweez adwords campaign info
+      - name: bing
+        identifier: raw_gz_bing
+        description: greenweez bing campaign info     
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: greenweez criteo campaign info   
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: greenweez facebook campaign info   
 
 
 models:
@@ -118,3 +130,50 @@ models:
          description: the cost of preparing the parcel in the distribution centre/warehouse
        - name: ship_cost
          description: shipping cost paid by Greenweez to the carrier/logistics provider
+
+  - name: int_campaigns
+    description: all marketing campaign grouped together
+    tests:
+    - unique:
+        column_name: "(date_date || '-' || campaign_key)"
+    columns:
+       - name: date_date
+         description: date of the campaign
+         tests:
+           - not_null
+       - name: paid_source
+         description: source of the campaign
+         tests:
+           - not_null
+       - name: campaign_key
+         description: cle de la campagne
+         tests:
+           - not_null
+       - name: campaign_name
+         description: nom de la campagne
+         tests:
+           - not_null
+       - name: ads_cost
+         description: cout de la campagne
+       - name: impression
+         description: nombre de vues
+
+       - name: click
+         description: nombre de click
+
+  - name: int_campaigns_day
+    description: aggregated version of int_campaigns model for each day
+    columns:
+       - name: date_date
+         description: primary key - campaign day
+         tests:
+           - unique
+           - not_null
+       - name: ads_costs
+         description: global cost of all ads
+       - name: ads_impression
+         description: global impression of all ads
+       - name: ads_clicks
+         description: global nb of clicks of all ads
+         tests:
+           - not_null
