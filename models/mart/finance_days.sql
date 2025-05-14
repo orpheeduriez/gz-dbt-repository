@@ -1,3 +1,5 @@
+{{config(materialized='table')}}
+
 SELECT
     avg_date
     ,COUNT(orders_id) AS nb_transactions
