@@ -14,5 +14,6 @@ margin,
 purchase_cost,
 logcost,
 shipping_fee,
-quantity
+quantity,
+ship_cost
 FROM sales_data

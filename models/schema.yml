@@ -24,3 +24,36 @@ sources:
           - name: orders_id
             tests:
               - unique
+
+
+models:
+  - name: int_orders_margin
+    description: purchase cost and margin per order
+    columns:
+      - name: orders_id
+        description: primary key identifying unique order
+        tests:
+          - unique
+          - not_null
+      - name: margin
+        description: margin calculation per order, margin = revenue - purchase_cost
+      - name: purchase_cost
+        description: purchase_cost per order, purchase_cost = quantity * purchase_price
+  - name: int_orders_operational
+    description: operational margin per order
+    columns:
+      - name: orders_id
+        description: primary key identifying unique order
+        tests:
+          - unique
+          - not_null
+      - name: operational_margin
+        description: operational margin calculation per order, Operational_margin = margin + shipping_fee - log_cost - ship_cost
+  - name: int_sales_margin
+    description: purchase cost and margin per product
+    columns:
+      - name: margin
+        description: margin calculation per product, margin = revenue - purchase_cost
+      - name: purchase_cost
+        description: purchase_cost per order, purchase_cost = quantity * purchase_price
+
