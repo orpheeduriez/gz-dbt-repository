@@ -1,5 +1,5 @@
 SELECT
-    avg_date
+    date_date
     ,COUNT(orders_id) AS nb_transactions
     ,ROUND(SUM(revenue),0) AS revenue
     ,ROUND(AVG(revenue),1) AS average_basket
@@ -12,5 +12,5 @@ SELECT
     ,ROUND(SUM(ship_cost),0) AS ship_cost
     ,SUM(quantity) AS quantity
 FROM {{ref("int_orders_operational")}}
-GROUP BY  avg_date
-ORDER BY  avg_date DESC
+GROUP BY  date_date
+ORDER BY  date_date DESC

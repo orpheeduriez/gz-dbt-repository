@@ -7,7 +7,7 @@ USING(orders_id)
 
 SELECT 
 orders_id,
-avg_date,
+date_date,
 ROUND((margin+shipping_fee-logcost-ship_cost),2) AS operational_margin,
 revenue,
 margin,
